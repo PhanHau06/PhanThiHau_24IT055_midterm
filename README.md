@@ -97,8 +97,8 @@ Selected results were compared with the native NetBSD ls command.
 
 - Output column alignment is not identical to native ls.
 - Full compatibility with BLOCKSIZE is not yet verified.
-- The -q and -w options require further implementation/testing.
-- Multiple operand ordering and special filesystem cases require further testing.
+- The -q and -w options were tested with tab characters; other non-printable characters need further testing.
+- Multiple operand ordering was tested with -r, -S and -t; special filesystem cases need further testing.
 - Interactions among certain options may differ from native NetBSD ls.
 
 ## 8. GitHub Repository
