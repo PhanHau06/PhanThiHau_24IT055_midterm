@@ -30,14 +30,14 @@ int parse_options(int argc, char *argv[], LsOptions *opts)
             case 'k': opts->kilobytes = 1; break;
             case 'l': opts->long_format = 1; break;
             case 'n': opts->numeric_ids = 1; break;
-            case 'q': opts->escape_names = 1; break;
+            case 'q': opts->escape_names = 1; opts->raw_names = 0; break;
             case 'R': opts->recursive = 1; break;
             case 'r': opts->reverse = 1; break;
             case 'S': opts->sort_size = 1; break;
             case 's': opts->show_blocks = 1; break;
             case 't': opts->sort_time = 1; break;
             case 'u': opts->access_time = 1; break;
-            case 'w': opts->raw_names = 1; break;
+            case 'w': opts->raw_names = 1; opts->escape_names = 0; break;
 
             default:
                 return -1;

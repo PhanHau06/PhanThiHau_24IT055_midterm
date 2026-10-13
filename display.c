@@ -1,5 +1,6 @@
 
 #include <stdio.h>
+#include <ctype.h>
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <pwd.h>
@@ -11,6 +12,7 @@
 #include "display.h"
 
 void print_human_size(unsigned long long size);
+static void print_filename(const char *name, const LsOptions *opts);
 
 /* Print Unix file type and permission bits. */
 static void print_permissions(mode_t mode)
@@ -129,7 +131,7 @@ if (opts->show_inode)
 
 
 
-    printf("%s", entry->name);
+    print_filename(entry->name, opts);
     /* Display symbolic link target in long format. */
     if (opts->long_format && S_ISLNK(st->st_mode)) {
         char target[4096];
@@ -166,4 +168,19 @@ else if (value < 10.0)
     printf("%.1f%s ", value, units[unit]);
 else
     printf("%.0f%s ", value, units[unit]);
+}
+
+/* Print file names and replace non-printable bytes for -q. */
+static void print_filename(const char *name,
+                           const LsOptions *opts)
+{
+    const unsigned char *p = (const unsigned char *)name;
+
+    while (*p != '\0') {
+        if (opts->escape_names && !isprint(*p))
+            putchar('?');
+        else
+            putchar(*p);
+        p++;
+    }
 }
