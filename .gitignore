@@ -50,3 +50,28 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+# Project binary
+myls
+ls
+
+# Compiled files
+*.o
+myls
+
+# Editor and backup files
+*.bak
+*.before_recursive
+*.error_backup
+*.swp
+*~
+
+# Temporary files
+*.tmp
+
+# Local test directory
+test_ls/
+
+# Additional backup files
+*.before_*
+*.bak_*
